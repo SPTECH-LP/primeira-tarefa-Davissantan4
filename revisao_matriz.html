@@ -1,11 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Revisão Matriz</title>
 </head>
+<style>
+    .container {
+        background-color: blue;
+        width: 300px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        text-align: center;
+        justify-items: center;
+    }
+
+    .item {
+        background-color: red;
+        width: 50px;
+        margin: 5px;
+    }
+</style>
+
 <body>
-    
+    <div class="container" id="div_matriz">
+        <!-- <div class="item">X</div> -->
+    </div>
+
+    <button onclick="montarMatriz()">Montar Matriz</button>
+    <br>
+    <input type="text" id="ipt_linha">
+    <input type="text" id="ipt_coluna">
+    <br>
+    <button onclick="consultarMatriz()">Consultar Matriz</button>
+    <div id="div_resposta"></div>
 </body>
+
+<script>
+    let minhaMatriz = [];
+
+
+    function consultarMatriz() {
+        let linha = Number(ipt_linha.value);
+        let coluna = Number(ipt_coluna.value);
+
+        let valor = minhaMatriz[linha][coluna];
+
+        div_resposta.innerHTML = ` <br> O valor da linha ${linha} e da coluna ${coluna} é ${valor} <br> `;
+    }
+
+    function montarMatriz() {
+
+        let qtdLinhas = 3;
+        let qtdColunas = 3;
+
+        let valorInicial = 5;
+
+        for (let i = 0; i < qtdLinhas; i++) {
+            minhaMatriz[i] = [];
+            for (let j = 0; j < qtdColunas; j++) {
+                minhaMatriz[i][j] = valorInicial;
+                valorInicial += 5;
+
+                div_matriz.innerHTML += `<div class="item">${minhaMatriz[i][j]}</div>`
+            }
+        }
+
+        console.log(minhaMatriz);
+
+    }
+</script>
+
 </html>
